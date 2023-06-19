@@ -1,0 +1,399 @@
+.bg-swiper {
+    background: RGB(173, 191, 195, 0.5);
+    padding: 2rem 0 2rem 0;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiperHome {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiperHome img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+   
+}
+
+:root {
+    --bg-blue1: #002060;
+    --bg-white1: #f7f8f3;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-white1);
+}
+
+.cp-coltop {
+    background: var(--bg-blue1);
+}
+
+.cp-colcontak {
+    padding: 0.5rem;
+}
+
+.icon-contak {
+    display: flex;
+    display: inline-block;
+    flex-direction: column;
+}
+
+.icon-contak a {
+    list-style-type: none;
+    text-decoration: none;
+    color: var(--bg-white1);
+    font-weight: 600;
+    transition: all 0.5s;
+}
+
+.icon-social {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-social a {
+    color: var(--bg-white1);
+    font-weight: 600;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+.icon-contak a:hover,
+.icon-media a:hover {
+    color: var(--bg-blue1);
+}
+
+.cp-logo {
+    position: relative;
+}
+
+.typing-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.swiper {
+    margin-top: 1rem;
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-white1);
+}
+
+.swiper-slide i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    font-size: 8rem;
+}
+
+.cp-sclin {
+    width: 30%;
+}
+
+.swiper-slide:nth-child(2n) {
+    width: 30%;
+}
+
+.swiper-slide:nth-child(3n) {
+    width: 30%;
+}
+
+.cp-sclin {
+    border: 1px solid var(--bg-blue1);
+    height: 9.7rem;
+    border-radius: 0.6rem;
+}
+
+.neme-des {
+    width: 100%;
+    background: var(--bg-blue1);
+    color: var(--bg-white1);
+    position: absolute;
+    margin-top: 8rem;
+    border-bottom-left-radius: 0.6rem;
+    border-bottom-right-radius: 0.6rem;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.img-clout1 {
+    position: absolute;
+    margin-bottom: 5rem;
+    margin-left: 6rem;
+    z-index: -1;
+}
+
+.img-clouty1 {
+    position: absolute;
+    margin-bottom: 5rem;
+    margin-right: 7rem;
+    z-index: 1;
+}
+
+@media screen and (max-width: 600px) {
+    .cp-colcontak {
+        justify-content: center;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .cp-logo-icon {
+        display: none;
+    }
+
+    .cp-sclin {
+        width: 45%;
+    }
+
+    .cp-sclin:nth-child(2n) {
+        width: 45%;
+    }
+
+    .cp-sclin:nth-child(3n) {
+        width: 45%;
+    }
+
+    .typing-text {
+        font-size: 2rem;
+    }
+
+    .cp-logo-img {
+        width: 15%;
+    }
+
+    .cp-logo-conten {
+        margin-top: 1rem;
+    }
+
+    .img-clout {
+        margin-right: 1.1rem;
+    }
+
+    .img-clouty {
+        margin-left: 2rem;
+    }
+}
+
+.cp-footer {
+    background: var(--bg-blue1);
+    margin-top: 1rem;
+    height: 3rem;
+}
+
+.nav-foter {
+    padding: 0.5rem;
+}
+
+.nav-foter li,
+a {
+    list-style-type: none;
+    text-decoration: none;
+    padding-top: 0.2rem;
+    color: var(--bg-white1);
+    font-weight: 600;
+}
+
+/* .navbar-nav > li {
+    margin-right: 1rem;
+    margin-left: 1rem;
+} */
+
+.cp-logo-nav {
+    display: none;
+    /* Sembunyikan logo saat awal halaman dimuat */
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    /* Letakkan logo di atas elemen lain pada halaman */
+}
+
+.logo-show {
+    /* Tampilkan logo saat di-scroll */
+    display: block !important;
+    -webkit-animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.logo-hide {
+    /* Sembunyikan logo saat di-scroll */
+    display: none !important;
+    -webkit-animation: fadeOut 0.5s ease-in-out;
+    animation: fadeOut 0.5s ease-in-out;
+}
+
+.dropdown-menu {
+    background: var(--bg-blue1);
+    color: var(--bg-white1);
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    color: #f7f8f3;
+}
+
+.dropdown:hover .dropdown-menu a {
+    background: none;
+    color: var(--bg-white1);
+}
+
+.dropdown .dropdown-menu a {
+    background: none;
+    color: var(--bg-white1);
+}
+
+.dropdown-item {
+    position: relative;
+}
+
+.dropdown-item:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--bg-white1);
+    transform: scaleX(0);
+    transition: all 0.8s;
+    transform-origin: left;
+}
+
+.dropdown-item:hover:after {
+    transform: scaleX(1);
+}
+
+.navbar-toggler {
+    font-size: 0.8rem;
+    background: var(--bg-white1);
+    color: var(--bg-white1);
+}
+
+.collapse {
+    background: var(--bg-blue1);
+}
+
+/* conten */
+/* .bg-swiper {
+    background: RGB(173, 191, 195, 0.5);
+    padding: 2rem 0 2rem 0;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiperHome img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.bg-swiper {
+    background: RGB(173, 191, 195, 0.5);
+    padding: 2rem 0 2rem 0;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiperHome img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 600px) {
+    .cp-footer {
+        background: #082567;
+        margin-top: 1rem;
+        height: 3rem;
+    }
+}

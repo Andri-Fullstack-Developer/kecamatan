@@ -2,6 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Session\TokenMismatchException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -27,4 +30,16 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof TokenMismatchException) {
+            // Redirect back to the previous route
+            return Redirect::back();
+        }
+
+        return parent::render($request, $exception);
+    }
+
 }

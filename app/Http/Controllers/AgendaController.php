@@ -12,11 +12,15 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        //
+        $home = DB::table('home')->select('image')->get();
+        $ds = DB::table('namadesa')->get();
+        $agen = DB::table('agenda')->orderBy('id', 'desc')->get();
+        return view('pages.Program.agenda', compact('home', 'ds', 'agen'));
+        // return view('pages.Program.agenda');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource. ->orderBy('created_at', 'desc')
      */
     public function create()
     {
@@ -35,7 +39,7 @@ class AgendaController extends Controller
             'lokasi' =>$request->lokasi
         ]);
 
-       // return back()->with('success', 'Terimakasih, Anda sudah berhasil meunggah foto.');
+       return back()->with('success', 'Terimakasih, Anda sudah berhasil meunggah Aganda.');
     }
 
     /**
@@ -59,7 +63,18 @@ class AgendaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $agenda = DB::table('agenda')->find($id);
+    
+        if ($agenda) {
+            DB::table('agenda')->where('id', $id)->update([
+                'judul' => $request->judul,
+                'hariTgl' => $request->hariTgl,
+                'jam' => $request->jam,
+                'lokasi' =>$request->lokasi
+            ]);
+    
+            return back()->with('success', 'Terimakasih, Anda sudah berhasil Data');
+        }
     }
 
     /**

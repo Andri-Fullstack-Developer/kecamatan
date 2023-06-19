@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 class LoginController extends Controller
 {
     public function index(){
-        return view('Login.login');
+        return view('Login.singin');
     }
 
     public function post_login(Request $request){
@@ -32,6 +32,7 @@ class LoginController extends Controller
 
             return redirect()->route('dashboard');
         }
+        
         //return('anda ggal');
         return redirect()->route('login')->with('error', 'Username atau password salah.');
     }

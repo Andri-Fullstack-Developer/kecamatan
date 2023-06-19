@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class JabatanController extends Controller
@@ -13,7 +14,10 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        //
+        $ja = DB::table('jabatan')->get();
+        $home = DB::table('home')->select('image')->get();
+        $ds = DB::table('namadesa')->get();
+        return view('pages.Profil.penjabat', compact('home', 'ds', 'ja'));
     }
 
     /**
@@ -37,11 +41,17 @@ class JabatanController extends Controller
             'image.mimes' => 'Format file gambar harus png, jpg, atau jpeg'
         ]);
 
-        $name_ja = $request->image->getClientOriginalName();
-        $img = $request->file('image')->storeAs('images', $name_ja);
+        if ($request->hasFile('image')) {
+            $foto_j = $request->file('image');
+            $foto_extensi_j = $foto_j->extension();
+            $foto_jabatan = date('ymdhis') . ".$foto_extensi_j";
+            $foto_j->move(public_path('Image'), $foto_jabatan);
+        } else {
+            return redirect()->back()->with('error', 'Foto Halaman Utama wajib diisi');
+        }
 
         DB::table('jabatan')->insert([
-            'image' => $name_ja,
+            'image' => $foto_jabatan,
             'nama' => $request->nama,
             'jabatan' => $request->penjabat
         ]);
@@ -71,7 +81,16 @@ class JabatanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $jabatan = DB::table('jabatan')->find($id);
+    
+        if ($jabatan) {
+            DB::table('jabatan')->where('id', $id)->update([
+                'nama' =>$request->nama,
+                'jabatan' =>$request->jabatan
+            ]);
+    
+            return back()->with('success', 'Terimakasih, Anda sudah berhasil Data');
+        }
     }
 
     /**
@@ -79,12 +98,15 @@ class JabatanController extends Controller
      */
     public function destroy_jabatan(string $id, Request $request)
     {
-        
-        $foto = $request->input('img');
-        Storage::disk('public')->delete($foto);
-        
-        DB::table('jabatan')->where('id', $id)->delete();
-        
-        return back()->with('success', 'Terimakasih, Data telah terhapus.');
+        $jabatan = DB::table('jabatan')->where('id', $id)->first();
+        if ($jabatan) {
+            $foto_j = $jabatan->image;
+            if (File::exists(public_path("Image/$foto_j"))) {
+                File::delete(public_path("Image/$foto_j"));
+            }
+            DB::table('jabatan')->where('id', $id)->delete();
+            return back()->with('success', 'Terimakasih, Data telah terhapus.');
+        }
+        return back()->with('error', 'Data tidak ditemukan');
     }
 }

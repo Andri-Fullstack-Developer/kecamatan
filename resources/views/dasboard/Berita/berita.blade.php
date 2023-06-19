@@ -16,29 +16,59 @@
                     <tr>
                         <th>No</th>
                         <th>Img</th>
-                        <th>Name</th>
-                        <th>Agenda</th>
+                        <th>Judul</th>
+                        <th>Informasi</th>
+                        <th>Jam</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                @php
-                    $no = 1;
-                @endphp
                 <tbody>
-                    @foreach ($ho as $item)
+                    @foreach ($ho as $index=> $item)
                         <tr>
-                            <td>{{ $no++ }}</td>
+                            <td>{{ $index + $ho->firstItem() }}</td>
                             <td>
                                 @if ($item->image)
-                                    <img width="50px" src="{{ url('storage/Images') . '/' . $item->image }}" alt="">
+                                    <img width="50px" src="{{ url('storage/Images') . '/' . $item->image }}"
+                                        alt="">
                                 @endif
                             </td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->agenda }}</td>
+                            <td>{{ substr($item->judul, 0, 20) }}</td>
+                            <td>{{ substr($item->informasi, 0, 40) }}...</td>
+                            <td>{{ $item->created_at }}</td>
                             <td>
-                                <a href="#" class="btn-sm btn-edit">
+                                <button type="button" class="btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#berita{{ $item->id }}">
                                     <i class="fas fa-edit icon-edit"></i>
-                                </a>
+                                </button>
+                                {{-- edit --}}
+                                <div class="modal fade" id="berita{{ $item->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content" style="background: #000">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Desa</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="/update-berita/{{ $item->id }}"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <label class="model-la" for="judul">Masukan Judul</label>
+                                                    <input class="model-in" value="{{ $item->judul }}" name="judul"
+                                                        type="text">
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal"><i
+                                                                class="fa-solid fa-xmark"></i></button>
+                                                        <button type="submit" class="btn btn-primary"><i
+                                                                class="fa-solid fa-check"></i></button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <Form action="/delete_berita/{{ $item->id }}" method="POST" class="d-inline"
                                     onsubmit="return confirm('Yakin ingin mengahus data')">
                                     @csrf
@@ -52,40 +82,38 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="container mt-2">
+                {{ $ho->links() }}
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Modal berita-->
-<div class="modal fade" id="berita" tabindex="-1" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content" style="background: #000">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Home</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" action="{{ url('post-berita') }}" enctype="multipart/form-data">
-                @csrf
-                <label class="model-la" for="name">Name</label>
-                <input class="model-in" type="text" name="name"
-                    placeholder="Masukan Judul Berita">
-                <label class="model-la" for="image">Foto</label>
-                <input class="model-in" name="image" type="file">
-                <label class="model-la" for="agenda">Agenda</label>
-                <textarea class="model-in" name="agenda" cols="10" rows="6" name="agenda"
-                    placeholder="Masukkan diskripsi"></textarea>
-                {{-- <textarea  class="model-in" type="text" name="agenda" placeholder="Masukkan diskripsi"> --}}
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
-        </div>
+<div class="modal fade" id="berita" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background: #000">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Home</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url('post-berita') }}" enctype="multipart/form-data">
+                    @csrf
+                    <label class="model-la" for="judul">Judul</label>
+                    <input class="model-in" type="text" name="judul" placeholder="Masukan Judul Berita">
+                    <label class="model-la" for="image">Foto</label>
+                    <input class="model-in" name="image" type="file">
+                    <label class="model-la" for="informasi">Informasi</label>
+                    <textarea class="model-in" name="informasi" cols="10" rows="6" placeholder="Masukkan diskripsi"></textarea>
+                    {{-- <textarea  class="model-in" type="text" name="agenda" placeholder="Masukkan diskripsi"> --}}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
 
+        </div>
     </div>
-</div>
 </div>

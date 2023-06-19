@@ -22,21 +22,58 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                @php
-                    $no = 1;
-                @endphp
                 <tbody>
-                    @foreach ($ho as $item)
+                    @foreach ($ho as $index=> $item)
                         <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>{{ $item->judul }}</td>
+                            <td>{{ $index + $ho->firstItem() }}</td>
+                            <td>{{ substr($item->judul, 0, 20) }}...</td>
                             <td>{{ $item->hariTgl }}</td>
                             <td>{{ $item->jam }}</td>
                             <td>{{ $item->lokasi }}</td>
                             <td>
-                                <a href="#" class="btn-sm btn-edit">
+                                <button type="button" class="btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#agenda{{ $item->id }}">
                                     <i class="fas fa-edit icon-edit"></i>
-                                </a>
+                                </button>
+                                {{-- edit --}}
+                                <div class="modal fade" id="agenda{{ $item->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content" style="background: #000">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Desa</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="/update-agenda/{{ $item->id }}"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <label class="model-la" for="judul">Masukan Nama Program</label>
+                                                    <input class="model-in" value="{{ $item->judul }}" name="judul"
+                                                        type="text">
+                                                    <label class="model-la" for="hariTgl">Masukan Nama Program</label>
+                                                    <input class="model-in" value="{{ $item->hariTgl }}" name="hariTgl"
+                                                        type="text">
+                                                    <label class="model-la" for="lokasi">Masukan Nama Program</label>
+                                                    <input class="model-in" value="{{ $item->lokasi }}" name="lokasi"
+                                                        type="text">
+                                                    <label class="model-la" for="jam">Masukan Nama Program</label>
+                                                    <input class="model-in" value="{{ $item->jam }}" name="jam"
+                                                        type="text">
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal"><i
+                                                                class="fa-solid fa-xmark"></i></button>
+                                                        <button type="submit" class="btn btn-primary"><i
+                                                                class="fa-solid fa-check"></i></button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <Form action="/delete_agenda/{{ $item->id }}" method="POST" class="d-inline"
                                     onsubmit="return confirm('Yakin ingin mengahus data')">
                                     @csrf
@@ -49,40 +86,40 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="container mt-2">
+                {{ $ho->links() }}
+            </div>
         </div>
     </div>
 </div>
 
 
-  <!-- Modal Penjabat-->
-  <div class="modal fade" id="agenda" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content" style="background: #000">
-          <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Home</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                  aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <form method="POST" action="{{ url('post-agenda') }}" enctype="multipart/form-data">
-                  @csrf
-                  <label class="model-la" for="judul">Judul</label>
-                  <input class="model-in" type="text" name="judul" placeholder="Masukan Judul">
-                  <label class="model-la" for="hariTgl">Hari/Tgl</label>
-                  <input class="model-in" type="date" name="hariTgl" placeholder="Jabatan">
-                  <label class="model-la" for="jam">Jam</label>
-                  <input class="model-in" type="time" name="jam" placeholder="Jabatan">
-                  <label class="model-la" for="lokasi">Lokasi</label>
-                  <input class="model-in" type="text" name="lokasi" placeholder="Jabatan">
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary"
-                          data-bs-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Save</button>
-                  </div>
-              </form>
-          </div>
+<!-- Modal Penjabat-->
+<div class="modal fade" id="agenda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background: #000">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Home</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url('post-agenda') }}" enctype="multipart/form-data">
+                    @csrf
+                    <label class="model-la" for="judul">Judul</label>
+                    <input class="model-in" type="text" name="judul" placeholder="Masukan Judul">
+                    <label class="model-la" for="hariTgl">Hari/Tgl</label>
+                    <input class="model-in" type="date" name="hariTgl">
+                    <label class="model-la" for="jam">Jam</label>
+                    <input class="model-in" type="time" name="jam">
+                    <label class="model-la" for="lokasi">Lokasi</label>
+                    <input class="model-in" type="text" name="lokasi" placeholder="Lokasi">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
 
-      </div>
-  </div>
+        </div>
+    </div>
 </div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Panel Admin</title>
@@ -121,20 +122,24 @@
         @include('dasboard.app.spinner')
         <!-- Spinner End -->
 
-         <!-- Sidebar Start -->
+        <!-- Sidebar Start -->
         @include('dasboard.app.sidebar')
 
         <!-- Content Start -->
         <div class="content">
-             <!-- Navbar Start -->
+            <!-- Navbar Start -->
             @include('dasboard.app.nav')
 
-             <!-- Containt Start -->
+            <!-- Containt Start -->
             @if ($menu === 'home')
                 @section('home')
                     @include('dasboard.Home.home')
                 @show
-            @elseif($menu === 'penjabat')
+            @elseif($menu === 'nameDs')
+                @section('nameDs')
+                    @include('dasboard.Home.nameDs')
+                @show
+            @elseif($menu === 'penjabat' && $jabatan == 'ketua umun lkmbi')
                 @section('penjabat')
                     @include('dasboard.Profil.penjabat')
                 @show
@@ -154,6 +159,22 @@
                 @section('agenda')
                     @include('dasboard.Program.agenda')
                 @show
+            @elseif($menu === 'program')
+                @section('program')
+                    @include('dasboard.Program.program')
+                @show
+            @elseif($menu === 'datapengaduan')
+                @section('datapengaduan')
+                    @include('dasboard.Media.datapengaduan')
+                @show
+            @elseif($menu === 'foto')
+                @section('foto')
+                    @include('dasboard.Galery.foto')
+                @show
+            @elseif($menu === 'video')
+                @section('video')
+                    @include('dasboard.Galery.video')
+                @show
             @elseif($menu === 'singup')
                 @section('singup')
                     @include('dasboard.setting.singup')
@@ -164,7 +185,7 @@
             <!-- Footer Start -->
             @include('dasboard.app.footer')
             <!-- Footer End -->
-            
+
         </div>
         <!-- Content End -->
 
@@ -181,6 +202,7 @@
 
         <!-- Template Javascript -->
         <script src="{{ asset('dasboard/js/main.js') }}"></script>
+        <script src="https://kit.fontawesome.com/e88adbb80f.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

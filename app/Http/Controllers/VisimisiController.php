@@ -12,7 +12,9 @@ class VisimisiController extends Controller
      */
     public function index()
     {
-        //
+        $home = DB::table('home')->select('image')->get();
+        $ds = DB::table('namadesa')->get();
+        return view('pages.Profil.visiMisi', \compact('home', 'ds'));
     }
 
     /**
