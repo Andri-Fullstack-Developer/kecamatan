@@ -18,31 +18,21 @@ class DatapengaduanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Repository $config, Filesystem $files, Factory $viewFactory)
-    {
-        $pengadu =DB::table('pengaduan')->get();
-        return view('pages.Layanan.datapengaduan', \compact('pengadu'));
+    // public function index(Repository $config, Filesystem $files, Factory $viewFactory)
+    // {
+    //     $pengadu =DB::table('pengaduan')->get();
+    //     return view('pages.Layanan.datapengaduan', \compact('pengadu'));
         
-    }
+    // }
 
 
     public function datafile(){
         $pengadu =DB::table('pengaduan')->orderBy('id', 'desc')->get();
-        $home = DB::table('home')->select('image')->get();
+        // $home = DB::table('home')->select('image')->get();
         $ds = DB::table('namadesa')->get();
 
-        return view('pages.Informasi.datapengaduan',  compact('pengadu', 'home', 'ds'));
+        return view('pages.Informasi.datapengaduan',  compact('pengadu', 'ds'));
     }
-
-    // public function downloaddata(Repository $config, Filesystem $files, Factory $viewFactory, $id)
-    // {
-    //     $pengadu =DB::table('pengaduan')->where('id', $id)->get();
-
-    //     $dompdf = new Dompdf();
-    //     $view = view('pages.Layanan.datapengaduan', compact('pengadu'));
-    //     $pdf = new PDF($dompdf, $config, $files, $viewFactory);
-    //     return $pdf->loadHTML($view)->stream('data_pengaduan.pdf');
-    // }
 
     public function downloaddata(Repository $config, Filesystem $files, Factory $viewFactory, $id)
     {

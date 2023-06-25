@@ -138,6 +138,17 @@ class HomeController extends Controller
         return view('dasboard.dasboard', compact('ho','menu', 'name', 'jabatan', 'username'));
     }
 
+    public function data_ektp()
+    {
+        $ektp = DB::table('pendaftaran_ektp')->orderBy('id', 'desc')->get();
+        $name = Auth::user()->name;
+        $username = Auth::user()->username;
+        $jabatan = Auth::user()->jabatan;
+        $menu = 'data_pendaftran_ektp';
+
+        return view('dasboard.dasboard', compact('menu', 'name', 'jabatan', 'username', 'ektp'));
+    }
+
     public function foto(){
         if(Auth::check()){
             $foto = DB::table('foto')->orderBy('id', 'desc')->Paginate(7);

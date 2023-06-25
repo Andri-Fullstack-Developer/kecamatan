@@ -85,32 +85,32 @@
 
                             <tr>
                                 <th class="col-md-4">Camat</th>
-                                <td class="col-md-8">: {{$data[0]}}</td>
+                                <td class="col-md-8">YUDI PRADANA,  SARJANA HUKUM</td>
                             </tr>
                             <tr>
                                 <th class="col-md-4">Sekertaris Camat</th>
-                                <td class="col-md-8">: {{$data[1]}}</td>
+                                <td class="col-md-8">YEDI RUDIANTORO, S,IP</td>
                             </tr>
-                            {{-- <tr>
+                            <tr>
                                     <th class="col-md-4">Kepala Seksi Pemerintahan Umun</th>
-                                    <td class="col-md-8">: habibi</td>
+                                    <td class="col-md-8">AD LILIS SOPIAH</td>
                                 </tr>
                                 <tr>
                                     <th class="col-md-4">Kepala Seksi Kesejahteraan Masyrakat</th>
-                                    <td class="col-md-8">: habibi</td>
+                                    <td class="col-md-8">AHMAD BUKHARI, S.ST</td>
                                 </tr>
                                 <tr>
                                     <th class="col-md-4">Kepala Seksi Pemberdayayan Masyrakat</th>
-                                    <td class="col-md-8">: habibi</td>
+                                    <td class="col-md-8">MUHAMMAD HERDIANSYAH HASIBUAN,  S.IP</td>
                                 </tr>
                                 <tr>
                                     <th class="col-md-4">Kepala Seksi Pelayanan Umun</th>
-                                    <td class="col-md-8">: habibi</td>
+                                    <td class="col-md-8">YUYUD DWIYULIANTO, S.Sos</td>
                                 </tr>
                                 <tr>
                                     <th class="col-md-4">Kepala Seksi Ketentraman dan Ketertiban</th>
-                                    <td class="col-md-8">: habibi</td>
-                                </tr> --}}
+                                    <td class="col-md-8">SUHANDI, S.IP</td>
+                                </tr>
 
                         </tbody>
                     </table>

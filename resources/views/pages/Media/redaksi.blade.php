@@ -119,38 +119,37 @@
                     <div class="redaksi-pelindung">
                         <h2>Pelindung :</h2>
                         <div class="text-redaksi">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing.(Camat Tuban)</p>
+                            <p>YUDI PRADANA,  SARJANA HUKUM.(Camat Tuban)</p>
                         </div>
                     </div>
                     <div class="redaksi-sekertaris">
                         <h2>Sekertaris :</h2>
                         <div class="text-redaksi">
-                            <p>Lorem ipsum dolor sit amet.(Sekertaris Kecamatan)</p>
+                            <p>YEDI RUDIANTORO, S,IP.(Sekertaris Kecamatan)</p>
                         </div>
                     </div>
                     <div class="redaksi-pengarah_seksi">
                         <h2>Pengarah Seksi :</h2>
                         <div class="text-redaksi">
-                            <p>Lorem ipsum dolor sit amet consectetur.(Pemerintahan)</p>
-                            <p>Lorem ipsum dolor sit amet consectetur.(Trantip)</p>
-                            <p>Lorem ipsum dolor sit amet consectetur.(Pelindung Masyarakat)</p>
-                            <p>Lorem ipsum dolor sit amet consectetur.(Kesejahteraan Sosial)</p>
-                            <p>Lorem ipsum dolor sit amet consectetur.(Pembagunan)</p>
+                            <p>AD LILIS SOPIAH.(Pemerintahan)</p>
+                            <p>MUHAMMAD HERDIANSYAH HASIBUAN,  S.IP.(Pelindung Masyarakat)</p>
+                            <p>AHMAD BUKHARI, S.ST.(Kesejahteraan Sosial)</p>
+                            <p>YUYUD DWIYULIANTO, S.Sos.(Pembagunan)</p>
                         </div>
                     </div>
                     <div class="redaksi-bidang_pelayanan">
                         <h2>Bidang Pelayanan-pelayanan :</h2>
                         <div class="text-redaksi">
-                            <p>Lorem ipsum dolor sit amet.(Pranata Komputer Ahli Muda)</p>
-                            <p>Lorem ipsum dolor sit amet.(Dokumentasi)</p>
-                            <p>Lorem ipsum dolor sit amet.(Operator)</p>
+                            <p>Erina Letivina A, S.Kom.(Pranata Komputer Ahli Muda)</p>
+                            <p>Kiki Aprilia P, S.Kom.(Dokumentasi)</p>
+                            <p>Yolency W.P, SE.(Operator)</p>
                         </div>
                     </div>
                     <div class="redaksi-bidang_pemberitaan">
                         <h2>Bidang Pemberitaan :</h2>
                         <div class="text-redaksi">
-                            <p>Lorem ipsum dolor sit amet.(Pranata Humas Ahli Muda) </p>
-                            <p>Lorem ipsum dolor sit amet. (Redaktur)</p>
+                            <p>Wahyu Siswanto, S. Ikom.(Pranata Humas Ahli Muda) </p>
+                            <p>Heri Setiawan, S.S (Redaktur)</p>
                         </div>
                     </div>
                 </div>

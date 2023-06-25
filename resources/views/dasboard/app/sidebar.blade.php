@@ -64,7 +64,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                         class="fa fa-laptop me-2"></i>Pelayanan</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">Cek bantuan</a>
+                    <a href="/dashboard/Pelayanan/data_pendaftran_ektp" class="dropdown-item">Data Pendaftran EKTP</a>
                     <a href="typography.html" class="dropdown-item">Persyaratan</a>
                     <a href="typography.html" class="dropdown-item">Penghargaan</a>
                     <a href="typography.html" class="dropdown-item">Sobat Ducapil</a>
@@ -77,7 +77,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                         class="fa fa-laptop me-2"></i>Infomasi Publik</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">Perancangan</a>
+                    <a href="button.html" class="dropdown-item">sds</a>
                     <a href="typography.html" class="dropdown-item">Laporan Kinerja</a>
                     <a href="typography.html" class="dropdown-item">Laporan Keuangan</a>
                     <a href="typography.html" class="dropdown-item">Pemohonan</a>

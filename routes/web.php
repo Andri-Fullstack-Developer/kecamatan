@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KkController;
+use App\Http\Controllers\AkteController;
+use App\Http\Controllers\EktpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VideoController;
@@ -69,6 +72,7 @@ Route::get('/dashboard/Program/program', [HomeController::class, 'program']);
 Route::get('/dashboard/Galery/foto', [HomeController::class, 'foto']);
 Route::get('/dashboard/Galery/video', [HomeController::class, 'videoS']);
 Route::get('/dashboard/Media/datapengaduan', [HomeController::class, 'Datapengadu']);
+Route::get('/dashboard/Pelayanan/data_pendaftran_ektp', [HomeController::class, 'data_ektp']);
 
 
 Route::post('/post_login', [LoginController::class, 'post_login'])->name('post_login');
@@ -106,6 +110,7 @@ Route::post('/delete_program/{id}', [ProgramController::class, 'destroy_program'
 Route::post('/delete_foto/{id}', [GaleryController::class, 'destroy_foto']);
 Route::post('/delete_video/{id}', [VideoController::class, 'destroy_video']);
 Route::post('/delete_pengaduan/{id}', [PenganduanController::class, 'destroy_pengaduan']);
+Route::post('/delete_ektp/{id}', [EktpController::class, 'destroy_ektp']);
 
 
 Route::post('/ratings', [RantingController::class, 'store'])->name('ratings.store');
@@ -119,12 +124,16 @@ Route::get('/video', [VideoController::class, 'index'])->name('video');
 
 // Route::get('/data-pengaduan', [DatapengaduanController::class, 'index'])->name('data-pengaduan');
 
+// Route::get('/tampil_ektp', [EktpController::class, 'download_data']);
+Route::get('/tampil_ektp/{id}', [EktpController::class, 'downloaddata_ektp']);
+
 Route::get('/tampildata', [DatapengaduanController::class, 'datafile']);
 Route::get('/tampildata/{id}', [DatapengaduanController::class, 'downloaddata']);
 
 Route::get('/data_penduduk', [DatapendudukController::class, 'index']);
 Route::get('/data_keuagan', [DatakeuaganController::class, 'index']);
 
+Route::post('/pendaftaran_ektp', [EktpController::class, 'store']);
 // Route::get('/berita', function(){
 //     return view('Berita.berita');
 // });
@@ -139,7 +148,14 @@ Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
 Route::get('/daftar', [DucapilController::class, 'index'])->name('daftar');
+Route::get('/ektp', [EktpController::class, 'index']);
+// Route::get('/template', [EktpController::class, 'form_ktp']);
+Route::get('/kk', [KkController::class, 'index']);
 
+
+// Akte
+Route::get('/akte', [AkteController::class, 'index']);
+Route::post('/pendaftran_akte', [AkteController::class, 'store']);
 
 
 // Update

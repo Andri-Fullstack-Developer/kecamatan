@@ -299,11 +299,10 @@
                                 Pelayanan
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Cek bantuan</a></li>
-                                <li><a class="dropdown-item" href="https://www.lapor.go.id/"
-                                        target="_">Persyaratan</a></li>
-                                <li><a class="dropdown-item" href="#">Penghargaan</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/daftar') }}">Sobat Ducapil</a>
+                                <li><a class="dropdown-item" href="{{ url('/ektp') }}">Pelayanan EKTP</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/template') }}">form</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/kk') }}">Pelayanan KK</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/akte') }}">Pelayanan AKTE</a>
                                 </li>
                             </ul>
                         </li>
