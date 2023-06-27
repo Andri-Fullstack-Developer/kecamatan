@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Kecamatan Tuban | Prontal resmi</title>
     <link rel="icon" type="image/png" href="{{ asset('img/logo_con.png') }}">
     <link rel="stylesheet" href="{{ asset('NavTop/navTop.css') }}">

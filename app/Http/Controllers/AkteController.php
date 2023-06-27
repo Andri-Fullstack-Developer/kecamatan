@@ -30,6 +30,7 @@ class AkteController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        try {
         DB::table('pendaftaran_akte')->insert([
             // nama Pelapor
             'nama_pe'=>$request->nama_pelapor,
@@ -79,7 +80,14 @@ class AkteController extends Controller
             'panjangBayi_anak'=>$request->panjang_anak,
         ]);
 
-        return redirect()->back();
+            return redirect()->back()
+                ->with('success', 'Created successfully!');
+        } catch (\Exception $e){
+            return redirect()->back()
+                ->with('error', 'Error during the creation!');
+        }
+
+        // return redirect()->back();
     }
 
     /**

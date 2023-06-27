@@ -128,12 +128,13 @@
                     </p>
                 </div>
             </div>
+            @include('sweetalert::alert')
             <div class="row mt-5 ">
-                <form id="myForm" action="/pendaftaran_ektp" method="POST">
+                <form action="/pendaftaran_ektp" method="POST">
                     @csrf
                     <div class="form-row">
                         <div class="col-mb-6">
-                            <div class="form-ktp" id="form-ktp">
+                            <div class="form-ktp">
                                 <label for="provinsi" class="cover_pdf-ktp">
                                     Provinsi
                                     <input type="text" name="provinsi" placeholder="Masukan provinsi" required>
@@ -244,7 +245,7 @@
     </div>
 
     <!-- Modal -->
-    <div id="thankYouModal" class="modal fade" tabindex="-1" role="dialog" data-bs-backdrop="static"
+    {{-- <div id="thankYouModal" class="modal fade" tabindex="-1" role="dialog" data-bs-backdrop="static"
         data-bs-keyboard="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -258,8 +259,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </div> --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#submitBtn').click(function(e) {
@@ -267,8 +268,8 @@
                 $('#thankYouModal').modal('show');
             });
         });
-    </script>
-    <script>
+    </script> --}}
+    {{-- <script>
         $(document).ready(function() {
             // Function to check if all input fields are filled
             function validateForm() {
@@ -302,9 +303,29 @@
                 }
             });
         });
+    </script> --}}
+    <script>
+        // Mendapatkan semua input
+        const inputs = document.querySelectorAll('input');
+
+        // Memeriksa apakah semua input memiliki nilai
+        function checkInputs() {
+            let allFilled = true;
+            inputs.forEach(input => {
+                if (input.value === '') {
+                    allFilled = false;
+                }
+            });
+
+            // Mengaktifkan atau menonaktifkan tombol Submit
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = !allFilled;
+        }
+
+        // Menjalankan fungsi checkInputs saat ada perubahan di input
+        inputs.forEach(input => {
+            input.addEventListener('input', checkInputs);
+        });
     </script>
-
-
-
     @include('app.footer')
 @endsection

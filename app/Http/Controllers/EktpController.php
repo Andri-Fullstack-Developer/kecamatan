@@ -6,6 +6,8 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 use Barryvdh\DomPDF\PDF;
 
+use Illuminate\Validation\ValidationException;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Filesystem\Filesystem;
@@ -87,28 +89,37 @@ class EktpController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('pendaftaran_ektp')->insert([
-            'provinsi'=>$request->provinsi,
-            'kabupaten'=>$request->kebupatan,
-            'kecamatan'=>$request->kecamatan,
-            'kelurahan'=>$request->kelurahan,	
-            'nama'=>$request->nama,
-            'tempat_lahir'=>$request->tmpt_lahir,
-            'tanggal_lahir'=>$request->tgl_lahir,
-            'nik'=>$request->nik,
-            'alamat'=>$request->alamat,
-            'pekerjaan'=>$request->pekerjaan,
-            'rt'=>$request->rt,
-            'rw'=>$request->rw,
-            'status_ktp'=>$request->status_ktp,
-            'kode_pos' => $request->kode_post,
-            'no_hp'=>$request->no_hp,
-            'email'=>$request->email,
-            'jenis_kelamin'=>$request->jk,
-            'status_perkawinan'=>$request->status_perkawinan
-        ]);
+        try {
+            DB::table('pendaftaran_ektp')->insert([
+                'provinsi'=>$request->provinsi,
+                'kabupaten'=>$request->kebupatan,
+                'kecamatan'=>$request->kecamatan,
+                'kelurahan'=>$request->kelurahan,	
+                'nama'=>$request->nama,
+                'tempat_lahir'=>$request->tmpt_lahir,
+                'tanggal_lahir'=>$request->tgl_lahir,
+                'nik'=>$request->nik,
+                'alamat'=>$request->alamat,
+                'pekerjaan'=>$request->pekerjaan,
+                'rt'=>$request->rt,
+                'rw'=>$request->rw,
+                'status_ktp'=>$request->status_ktp,
+                'kode_pos' => $request->kode_post,
+                'no_hp'=>$request->no_hp,
+                'email'=>$request->email,
+                'jenis_kelamin'=>$request->jk,
+                'status_perkawinan'=>$request->status_perkawinan
+            ]);
+        
+            return redirect()->back()
+                ->with('success', 'Anda harus datang ke kecamatan dalam 3 hari setelah pendaftran untuk melengkapi pendaftaran yaitu
+                Foto, cap jari dan tandatangan.');
+        } catch (\Exception $e){
+            return redirect()->back()
+                ->with('error', 'Error during the creation!');
+        }
 
-        return redirect()->back();
+        // return redirect()->back();
     }
 
     /**
