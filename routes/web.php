@@ -10,6 +10,7 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GaleryController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SingupController;
 use App\Http\Controllers\DucapilController;
 use App\Http\Controllers\JabatanController;
@@ -144,7 +145,8 @@ Route::get('/visiMisi', [VisimisiController::class, 'index'])->name('visimisi');
 Route::get('/berita', [BeritaController::class, 'berita'])->name('berita');
 Route::get('/data_berita/{id}', [BeritaController::class, 'databerita'])->name('data.berita');
 
-Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
+Route::get('/agenda/{id}/{tahun?}', [AgendaController::class, 'index'])->name('agenda.index');
+// Route::get('/agenda/{beritaId}', [AgendaController::class, 'aganda_berita'])->name('agenda');
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
 Route::get('/daftar', [DucapilController::class, 'index'])->name('daftar');
@@ -165,6 +167,10 @@ Route::post('/update-organisasi/{id}', [OrganisasiController::class, 'update']);
 Route::post('/update-berita/{id}', [BeritaController::class, 'update']);
 Route::post('/update-program/{id}', [ProgramController::class, 'update']);
 Route::post('/update-agenda/{id}', [AgendaController::class, 'update']);
+
+// Route::get('/search', [SearchController::class, 'search'])->name('search');
+// Route::get('/search/results', [SearchController::class, 'showResults'])->name('search.results');
+Route::get('/search', [SearchController::class, 'showResults'])->name('showResults');
 
 
 Route::get('ball', function(){

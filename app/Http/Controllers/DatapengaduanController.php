@@ -59,12 +59,19 @@ class DatapengaduanController extends Controller
         // Mengambil output PDF dalam bentuk string
         $output = $dompdf->output();
 
-        // Menyimpan file PDF ke direktori tempat yang diinginkan
-        $pdfPath = 'Image.data_pengaduan.pdf';
-        $files->put($pdfPath, $output);
+        // Generate file name based on the DB value
+        $fileName = 'Pengaduan_' . $pengadu[0]->namape . '.pdf'; // Assuming 'nama' is the column name in the database
+        // $files->put($pdfPath, $output);
 
-        // Mengirimkan file PDF sebagai respons download
-        return response()->download($pdfPath, 'data_pengaduan.pdf');
+         // Menyimpan file PDF ke direktori tempat yang diinginkan
+         $pdfPath = 'Image/' . $fileName;
+         $files->put($pdfPath, $output);
+ 
+         // Mengirimkan file PDF sebagai respons download
+         return response()->download($pdfPath, $fileName);
+
+    // Mengirimkan file PDF sebagai respons download
+        // return response()->download($pdfPath, 'data_pengaduan.pdf');
     }
 
     /**

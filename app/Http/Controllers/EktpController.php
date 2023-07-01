@@ -34,6 +34,7 @@ class EktpController extends Controller
     public function download_data()
     {
         $ektp = DB::table('pendaftaran_ektp')->orderBy('id', 'desc')->get();
+       
         $ds = DB::table('namadesa')->get();
 
         return view('pages.pelayanan.data_ektp', compact( 'ektp', 'ds'));
@@ -43,36 +44,43 @@ class EktpController extends Controller
     public function downloaddata_ektp(Repository $config, Filesystem $files, Factory $viewFactory, $id)
     {
         $ektp = DB::table('pendaftaran_ektp')->where('id', $id)->get();
-        // Inisialisasi objek Dompdf
-        $dompdf = new Dompdf();
+        
+        if($ektp->isNotEmpty()){
+            // Inisialisasi objek Dompdf
+            $dompdf = new Dompdf();
 
-        // Konfigurasi Dompdf
-        $options = new Options();
-        // Set izin untuk membaca file gambar dari direktori 'Image'
-        $options->set('isRemoteEnabled', true);
-        $dompdf->setOptions($options);
+            // Konfigurasi Dompdf
+            $options = new Options();
+            // Set izin untuk membaca file gambar dari direktori 'Image'
+            $options->set('isRemoteEnabled', true);
+            $dompdf->setOptions($options);
 
-        // Render view ke dalam HTML
-        $view = $viewFactory->make('pages.Pelayanan.form_ektp', compact('ektp'))->render();
+            // Render view ke dalam HTML
+            $view = $viewFactory->make('pages.Pelayanan.form_ektp', compact('ektp'))->render();
 
-        // Load HTML ke dalam Dompdf
-        $dompdf->loadHtml($view);
+            // Load HTML ke dalam Dompdf
+            $dompdf->loadHtml($view);
 
-        // Render HTML ke dalam PDF
-        $dompdf->render();
+            // Render HTML ke dalam PDF
+            $dompdf->render();
 
-        // Mengambil output PDF dalam bentuk string
-        $output = $dompdf->output();
+            // Mengambil output PDF dalam bentuk string
+            $output = $dompdf->output();
 
-        // Generate file name based on the DB value
-        $fileName = 'data_ektp_' . $ektp[0]->nama . '.pdf'; // Assuming 'nama' is the column name in the database
+            // Generate file name based on the DB value
+            $fileName = 'data_ektp_' . $ektp[0]->nama . '.pdf'; // Assuming 'nama' is the column name in the database
 
-        // Menyimpan file PDF ke direktori tempat yang diinginkan
-        $pdfPath = 'Image/' . $fileName;
-        $files->put($pdfPath, $output);
+            // Menyimpan file PDF ke direktori tempat yang diinginkan
+            $pdfPath = 'Image/' . $fileName;
+            $files->put($pdfPath, $output);
 
-        // Mengirimkan file PDF sebagai respons download
-        return response()->download($pdfPath, $fileName);
+            // Mengirimkan file PDF sebagai respons download
+            return response()->download($pdfPath, $fileName);
+        }else {
+            // Handle jika data ektp kosong
+            // Misalnya, tampilkan pesan error atau arahkan pengguna ke halaman lain
+        }
+        
 
     }
 

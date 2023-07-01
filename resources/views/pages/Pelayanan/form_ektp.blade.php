@@ -24,6 +24,12 @@
             </div>
             <div class="heading_ektp_tgl">
                 <h6><span class="left">{{ $e->tanggal_pendaftaran }}</span></h6>
+                {{-- @if (isset($e->tanggal_pendaftaran))
+                    <td>{{ \Carbon\Carbon::parse($e->tanggal_pendaftaran)->format('d F Y') }}</td>
+                @else
+                    <td>Tanggal tidak tersedia</td>
+                @endif --}}
+                </span></h6>
             </div>
             <div class="data_kota">
                 <h5>PEMERINTAH PROPINSI<span class="left">{{ $e->provinsi }}</span></h5>

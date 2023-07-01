@@ -10,14 +10,43 @@ class AgendaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    // public function index()
+    // {
+    //     $berike = DB::table('berita')->orderBy('id', 'desc')->take(3)->get();
+        
+    //     $home = DB::table('home')->select('image')->get();
+    //     $ds = DB::table('namadesa')->get();
+    //     $agen = DB::table('agenda')->orderBy('id', 'desc')->get();
+    //     return view('pages.Program.agenda', compact('home', 'ds', 'agen'));
+    //     // return view('pages.Program.agenda');
+    // }
+    public function index(Request $request, $id = 0)
     {
-        $home = DB::table('home')->select('image')->get();
         $ds = DB::table('namadesa')->get();
-        $agen = DB::table('agenda')->orderBy('id', 'desc')->get();
-        return view('pages.Program.agenda', compact('home', 'ds', 'agen'));
-        // return view('pages.Program.agenda');
+        $berike = DB::table('berita')->orderBy('id', 'desc')->take(3)->get();
+        
+        // Mendapatkan tahun dari permintaan GET atau menggunakan tahun saat ini
+        // $tahun = $request->input('tahun', date('Y'));
+        $tahun = $request->tahun;
+        if(!$tahun){
+            $tahun = date('Y');
+        }
+    
+        // Kisaran tahun dari 2015 sampai 2023
+        $years = range(2015, date('Y'));
+    
+        // Mengambil data agenda berdasarkan tahun yang dipilih
+        $agen = DB::table('agenda')
+            ->whereYear('hariTgl', $tahun)
+            ->orderBy('id', 'desc')
+            ->paginate(7);
+    
+        return view('pages.Program.agenda', compact('ds','berike', 'agen', 'tahun', 'years'));
     }
+    
+    
+    
+    
 
     /**
      * Show the form for creating a new resource. ->orderBy('created_at', 'desc')
@@ -34,6 +63,7 @@ class AgendaController extends Controller
     {
         DB::table('agenda')->insert([
             'judul' => $request->judul,
+            'hari'=>$request->hari,
             'hariTgl' => $request->hariTgl,
             'jam' => $request->jam,
             'lokasi' =>$request->lokasi
@@ -68,6 +98,7 @@ class AgendaController extends Controller
         if ($agenda) {
             DB::table('agenda')->where('id', $id)->update([
                 'judul' => $request->judul,
+                'hari'=>$request->hari,
                 'hariTgl' => $request->hariTgl,
                 'jam' => $request->jam,
                 'lokasi' =>$request->lokasi

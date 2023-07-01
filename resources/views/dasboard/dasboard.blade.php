@@ -81,6 +81,16 @@
             width: 100%;
         }
 
+        select.model-se,
+        input.model-date,
+        input.model-time{
+            padding: .4rem;
+            display: block;
+            margin-bottom: 20px;
+            width: 100%;
+            border-radius: 10px;
+        }
+
         textarea,
         input.model-in {
             display: block;
@@ -207,6 +217,8 @@
         <!-- Template Javascript -->
         <script src="{{ asset('dasboard/js/main.js') }}"></script>
         <script src="https://kit.fontawesome.com/e88adbb80f.js" crossorigin="anonymous"></script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>

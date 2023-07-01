@@ -16,6 +16,7 @@
                     <tr>
                         <th>No</th>
                         <th>Judul</th>
+                        <th>Hari</th>
                         <th>Hari/Tgl</th>
                         <th>Jam</th>
                         <th>Lokasi</th>
@@ -23,10 +24,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($ho as $index=> $item)
+                    @foreach ($ho as $index => $item)
                         <tr>
                             <td>{{ $index + $ho->firstItem() }}</td>
                             <td>{{ substr($item->judul, 0, 20) }}...</td>
+                            <td>{{ $item->hari }}</td>
                             <td>{{ $item->hariTgl }}</td>
                             <td>{{ $item->jam }}</td>
                             <td>{{ $item->lokasi }}</td>
@@ -52,6 +54,16 @@
                                                     <label class="model-la" for="judul">Masukan Nama Program</label>
                                                     <input class="model-in" value="{{ $item->judul }}" name="judul"
                                                         type="text">
+                                                    <label class="model-la" for="">Hari</label>
+                                                    <select class="model-se" name="hari">
+                                                        <option value="Senin">Senin</option>
+                                                        <option value="Selasa">Selasa</option>
+                                                        <option value="Rabu">Rabu</option>
+                                                        <option value="Kamis">Kamis</option>
+                                                        <option value="Jumat">Jumat</option>
+                                                        <option value="Sabtu">Sabtu</option>
+                                                        <option value="Minggu">Minggu</option>
+                                                    </select>
                                                     <label class="model-la" for="hariTgl">Masukan Nama Program</label>
                                                     <input class="model-in" value="{{ $item->hariTgl }}" name="hariTgl"
                                                         type="text">
@@ -107,10 +119,20 @@
                     @csrf
                     <label class="model-la" for="judul">Judul</label>
                     <input class="model-in" type="text" name="judul" placeholder="Masukan Judul">
+                    <label class="model-la" for="">Hari</label>
+                    <select class="model-se" name="hari">
+                        <option value="Senin">Senin</option>
+                        <option value="Selasa">Selasa</option>
+                        <option value="Rabu">Rabu</option>
+                        <option value="Kamis">Kamis</option>
+                        <option value="Jumat">Jumat</option>
+                        <option value="Sabtu">Sabtu</option>
+                        <option value="Minggu">Minggu</option>
+                    </select>
                     <label class="model-la" for="hariTgl">Hari/Tgl</label>
-                    <input class="model-in" type="date" name="hariTgl">
+                    <input class="model-date" type="date" name="hariTgl">
                     <label class="model-la" for="jam">Jam</label>
-                    <input class="model-in" type="time" name="jam">
+                    <input class="model-time" type="time" name="jam">
                     <label class="model-la" for="lokasi">Lokasi</label>
                     <input class="model-in" type="text" name="lokasi" placeholder="Lokasi">
                     <div class="modal-footer">

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
@@ -15,6 +17,7 @@
     <title>Kecamatan Tuban | Prontal resmi</title>
     <link rel="icon" type="image/png" href="{{ asset('img/logo_con.png') }}">
     <link rel="stylesheet" href="{{ asset('NavTop/navTop.css') }}">
+    <link rel="stylesheet" href="{{ asset('Gallery/style.css') }}">
     <style>
         ul .nav-link:hover {
             background: RGB(173, 191, 195, 0.1);
@@ -51,7 +54,7 @@
     <script src="https://kit.fontawesome.com/e88adbb80f.js" crossorigin="anonymous"></script>
 
 
-
+    <script src="{{ asset('Gallery/light.js') }}"></script>
 
     <script src="{{ asset('NavTop/mySwiperHome.js') }}"></script>
     <script src="{{ asset('NavTop/mySwiper.js') }}"></script>
@@ -137,7 +140,15 @@
             chart.draw(data, options);
         }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

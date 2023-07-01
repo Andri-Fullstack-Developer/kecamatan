@@ -44,14 +44,12 @@ class HomeController extends Controller
 
     public function jabatan(){
         if (Auth::check()){
-
             $ho = DB::table('jabatan')->get();
             $name = Auth::user()->name;
             $username = Auth::user()->username;
             $jabatan = Auth::user()->jabatan;
             
             $menu = 'penjabat';
-
             return view('dasboard.dasboard', compact('ho', 'menu', 'name', 'jabatan', 'username'));
         }
         return \redirect()->route('login');
@@ -66,9 +64,7 @@ class HomeController extends Controller
             $name = $user->name;
             $username = $user->username;
             $jabatan = $user->jabatan;
-            
             $menu = 'organisasi';
-            
             return view('dasboard.dasboard', compact('ho', 'menu', 'name', 'jabatan', 'username'));
         }
         
@@ -82,7 +78,6 @@ class HomeController extends Controller
             $name = Auth::user()->name;
             $username = Auth::user()->username;
             $jabatan = Auth::user()->jabatan;
-
             $menu = 'visi&misi';
 
             return view('dasboard.dasboard', compact('ho', 'menu', 'name', 'jabatan', 'username'));
@@ -105,7 +100,7 @@ class HomeController extends Controller
 
     public function agenda(){
         if(Auth::check()){
-            $ho = DB::table('agenda')->Paginate(6);
+            $ho = DB::table('agenda')->orderBy('id', 'desc')->Paginate(6);
             $name = Auth::user()->name;
             $username = Auth::user()->username;
             $jabatan = Auth::user()->jabatan;
@@ -129,24 +124,31 @@ class HomeController extends Controller
         return \redirect()->route('login');
     }
     public function Datapengadu(){
-        $ho = DB::table('pengaduan')->get();
-        $name = Auth::user()->name;
-        $username = Auth::user()->username;
-        $jabatan = Auth::user()->jabatan;
-        $menu = 'datapengaduan';
-        // $this->cek();
-        return view('dasboard.dasboard', compact('ho','menu', 'name', 'jabatan', 'username'));
+        if(Auth::check()){
+            $ho = DB::table('pengaduan')->get();
+            $name = Auth::user()->name;
+            $username = Auth::user()->username;
+            $jabatan = Auth::user()->jabatan;
+            $menu = 'datapengaduan';
+            // $this->cek();
+            return view('dasboard.dasboard', compact('ho','menu', 'name', 'jabatan', 'username'));
+        }
+        return redirect()->route('login');
+        
     }
 
     public function data_ektp()
     {
-        $ektp = DB::table('pendaftaran_ektp')->orderBy('id', 'desc')->get();
-        $name = Auth::user()->name;
-        $username = Auth::user()->username;
-        $jabatan = Auth::user()->jabatan;
-        $menu = 'data_pendaftran_ektp';
-
-        return view('dasboard.dasboard', compact('menu', 'name', 'jabatan', 'username', 'ektp'));
+        if(Auth::check()){
+            $ektp = DB::table('pendaftaran_ektp')->orderBy('id', 'desc')->get();
+            $name = Auth::user()->name;
+            $username = Auth::user()->username;
+            $jabatan = Auth::user()->jabatan;
+            $menu = 'data_pendaftran_ektp';
+    
+            return view('dasboard.dasboard', compact('menu', 'name', 'jabatan', 'username', 'ektp'));
+        }
+        return redirect()->route('login'); 
     }
 
     public function foto(){
@@ -164,7 +166,7 @@ class HomeController extends Controller
 
     public function videoS(){
         if(Auth::check()){
-        $video = DB::table('video')->orderBy('id', 'desc')->Paginate(7);
+            $video = DB::table('video')->orderBy('id', 'desc')->Paginate(7);
             $name = Auth::user()->name;
             $username = Auth::user()->username;
             $jabatan = Auth::user()->jabatan;

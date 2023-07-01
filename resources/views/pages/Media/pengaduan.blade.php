@@ -171,16 +171,7 @@
                     <p>Mengisi data harus benar</p>
                     <p class=" ket" type="button" data-bs-toggle="modal" data-bs-target="#ket">keterangan*</p>
                 </div>
-                @if (session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
+                @include('sweetalert::alert')
                 <form action="{{ url('post-pengadu') }}" method="POST" enctype="multipart/form-data">
                     <div class="row mt-5">
                         @csrf

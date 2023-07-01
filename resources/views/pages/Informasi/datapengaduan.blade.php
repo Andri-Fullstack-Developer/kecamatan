@@ -101,7 +101,7 @@
                     @foreach ($pengadu as $da)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $da->namape }}_{{ $da->id }}</td>
+                            <td>Pengaduan_{{ $da->namape }}_{{ $da->id }}</td>
                             <td class="aksi">
                                 <a href="/tampildata/{{ $da->id }}">
                                     <button class="btn-download" type="submit"><i class="fa fa-download"></i></button>

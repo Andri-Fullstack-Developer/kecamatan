@@ -213,12 +213,120 @@
 </div>
 
 <style>
-    .navbar.sticky-top .navbar-brand {
+    .logo {
         display: none;
+
     }
 
-    .navbar.sticky-top .navbar-brand.show-logo {
+    .logo img {
         display: block;
+        margin-top: 1rem;
+        width: 23%;
+        height: auto;
+    }
+</style>
+<style>
+    .nav-item {
+        padding-left: .5rem;
+        padding-right: .5rem;
+    }
+
+    .searchBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        background: #2f3640;
+        height: 40px;
+        border-radius: 40px;
+        padding: 10px;
+    }
+
+    .searchBox:hover>.searchInput {
+        width: 240px;
+        padding: 0 6px;
+    }
+
+    .searchBox:hover>.searchButton {
+        background: white;
+        color: #2f3640;
+    }
+
+    .searchButton {
+        color: white;
+        float: right;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #2f3640;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s;
+    }
+
+    .searchInput {
+        border: none;
+        background: none;
+        outline: none;
+        float: left;
+        padding: 0;
+        color: white;
+        font-size: 16px;
+        transition: 0.4s;
+        line-height: 40px;
+        width: 0px;
+    }
+
+    .form-outline {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-top: .2rem;
+    }
+
+    .form-outline .form-label {
+        position: absolute;
+        top: 50%;
+        left: .5rem;
+        pointer-events: none;
+        transition: 0.2s all;
+        transform: translateY(-50%);
+        font-size: 0.875rem;
+    }
+
+    .form-outline input:focus~label,
+    .form-outline input:not(:placeholder-shown)~label {
+        top: 0;
+        font-size: 0.75rem;
+        color: #6c757d;
+    }
+
+    .form-outline label.active {
+        top: 0;
+        font-size: 0.75rem;
+        color: #6c757d;
+    }
+
+    .form-outline label {
+        margin-bottom: 0.5rem;
+        /* Atur margin bawah sesuai kebutuhan */
+    }
+
+
+    .form-outline input {
+        width: 150px;
+        height: 30px;
+        font-size: 14px;
+        padding: 0.375rem 0.75rem;
+    }
+
+    @media screen and (max-width: 620px) {
+        .searchBox:hover>.searchInput {
+            width: 150px;
+            padding: 0 6px;
+        }
     }
 </style>
 
@@ -226,9 +334,9 @@
     <div class="container ">
         <div class="navbar cp-footer navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand cp-logo-nav" href="#">
-                    <img src="{{ asset('img/logo-tuban.png') }}" width="20" height="" alt="">
-                </a>
+                <ul class="logo nav-item">
+                    <img src="{{ asset('img/logo-tuban.png') }}" alt="Logo">
+                </ul>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -238,7 +346,7 @@
                 </button>
                 <div class="collapse  navbar-collapse justify-content-center " id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item ">
+                        <li class="nav-item">
                             <a class="nav-link text-white" href="{{ url('/') }}">Beranda</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -267,7 +375,8 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ url('/program') }}">Program SKPD</a>
                                 </li>
-                                <li><a class="dropdown-item" href="{{ url('/agenda') }}">Agenda</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/agenda/{id}/{tahun?}') }}">Agenda</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -300,7 +409,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ url('/ektp') }}">Pelayanan EKTP</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/template') }}">form</a></li>
+                                {{-- <li><a class="dropdown-item" href="{{ url('/template') }}">form</a></li> --}}
                                 <li><a class="dropdown-item" href="{{ url('/kk') }}">Pelayanan KK</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/akte') }}">Pelayanan AKTE</a>
                                 </li>
@@ -334,12 +443,47 @@
                         <li class="nav-item ">
                             <a class="nav-link text-white" href="https://www.lapor.go.id/" target="_">LAPOR!</a>
                         </li>
+                        <li class="nav-item">
+                            <form action="{{ route('showResults') }}" method="GET" id="form-search">
+                                <div class="input-group">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form1">Search</label>
+                                        <input id="search-focus" name="query" type="search" id="form1"
+                                            class="form-control" onchange="submitForm()" />
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
                     </ul>
+                    @include('sweetalert::alert')
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function submitForm() {
+        document.getElementById('form-search').submit();
+    }
+</script>
+<script>
+    // Mendapatkan elemen input dan label
+    const input = document.getElementById('search-focus');
+    const label = document.querySelector('.form-outline label');
+
+    // Menambahkan event listener untuk event focus pada input
+    input.addEventListener('focus', () => {
+        label.classList.add('active');
+    });
+
+    // Menambahkan event listener untuk event blur pada input
+    input.addEventListener('blur', () => {
+        if (input.value === '') {
+            label.classList.remove('active');
+        }
+    });
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -370,15 +514,13 @@
     //     }
     //     prevScrollpos = currentScrollPos;
     // }
-    $(window).scroll(function() {
-        var scrollTop = $(window).scrollTop();
-        var navbar = $('.navbar.sticky-top');
-        var logo = navbar.find('.navbar-brand');
+    window.addEventListener('scroll', function() {
+        var logo = document.querySelector('.logo');
 
-        if (scrollTop > 100) {
-            logo.addClass('show-logo');
+        if (window.pageYOffset > 0) {
+            logo.style.display = 'block';
         } else {
-            logo.removeClass('show-logo');
+            logo.style.display = 'none';
         }
     });
 </script>

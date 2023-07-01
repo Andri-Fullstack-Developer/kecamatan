@@ -103,8 +103,8 @@ class PenganduanController extends Controller
             'foto_pengadu' => $foto_pengadu,
             'text_laporan' => $request->diskripsi
         ]);
-    
-        return back()->with('success', 'Terimakasih, Anda sudah melaporkan kepada kami.');
+        
+        return redirect()->back()->with('success', 'Terimakasih, Anda sudah melaporkan kepada kami.');
     }
     
     

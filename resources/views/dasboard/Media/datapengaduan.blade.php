@@ -30,7 +30,7 @@
                             <td>{{ $item->usia }}</td>
                             <td>{{ $item->no_hp }}</td>
                             <td>
-                                <a href="#" class="btn-sm btn-edit">
+                                <a href="#" class="btn-sm btn-edit" onclick="showError(event)">
                                     <i class="fas fa-edit icon-edit"></i>
                                 </a>
                                 <Form action="/delete_pengaduan/{{ $item->id }}" method="POST" class="d-inline"
@@ -48,3 +48,13 @@
         </div>
     </div>
 </div>
+<script>
+    function showError(event) {
+        event.preventDefault();
+        swal({
+            icon: "error",
+            title: "Terjadi Kesalahan",
+            text: "Maaf data tidak bisa di edit",
+        });
+    }
+</script>

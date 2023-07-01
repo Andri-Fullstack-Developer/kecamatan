@@ -94,7 +94,7 @@
                             <td>{{ $pro->nama_program }}</td>
                             <td>{{ $pro->deskripsi }}</td>
                             <td>{{ $pro->anggaran }}</td>
-                            <td>{{ $pro->tahun }}</td>
+                            <td>{{ \Carbon\Carbon::parse($pro->tahun)->format('d-m-Y') }}</td>
                         </tr>
                     @endforeach
                 </table>

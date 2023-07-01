@@ -46,10 +46,10 @@
             </ul>
         </div>
     </div>
-    <style>
+    {{-- <style>
         .covergaleri {
                 margin-top: 2rem;
-                padding: 1rem;
+              
                 background: rgb(255, 255, 255);
                 background: linear-gradient(180deg, rgba(255, 255, 255, .1) 0%, rgba(209, 238, 252, 1) 100%);
                 box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -57,11 +57,11 @@
 
             .ligaleri {
                 overflow: hidden;
+                /* object-fit: fill; */
                 border: 1px solid #002060;
-                float: left;
+                /* float: left; */
                 margin-right: 1rem;
                 margin-top: .8rem;
-
             }
 
             .galeri li,
@@ -92,7 +92,8 @@
             .gambarmini {
                 width: 200px;
                 height: 200px;
-
+                object-fit: scale-down;
+                /* object-fit: none; */
             }
 
             .clear {
@@ -219,8 +220,145 @@
                 <div class="clear"></div>
             </ul>
         </div>
-    </div>
-    
+    </div> --}}
 
+    <style>
+        .cover-gallery {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgb(255, 255, 255);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .1) 0%, rgba(209, 238, 252, 1) 100%);
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        }
+
+        .img-item {
+            padding: .3rem;
+            background: aquamarine;
+            border-radius: .2rem;
+            position: relative;
+            overflow: hidden;
+            object-fit: cover;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: .2rem;
+        }
+
+        .text-gallery-item {
+            position: absolute;
+            width: 100%;
+            padding: 1rem;
+            color: white;
+            font-weight: 900;
+            top: 87%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .img-item:hover .text-gallery-item {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .img-item img {
+            width: 100%;
+            height: auto;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .img-item .text-gallery-item {
+            width: 100%;
+            background-color: rgba(4, 67, 255, 0.632);
+            padding: 10px;
+            color: #fff;
+        }
+
+
+        .img-item img {
+            transition: transform .3s ease;
+        }
+
+        .img-item:hover img {
+            transform: scale(1.04);
+        }
+
+        .modal-dialog {
+            max-width: 800px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* .modal-content {
+                  width: 100%;
+                } */
+/* 
+        .modal-body img.modal_img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        } */
+
+        /* .modal {
+            width: 100%;
+            height: auto;
+        } */
+
+        /* .modal .modal_img {
+            width: 100%;
+        } */
+
+        /* .cover-foto-modal {
+            width: 100%;
+            height: auto;
+        } */
+/* 
+        .cover-foto-modal img {
+            max-width: 100%;
+            max-height: 100%;
+        } */
+
+        /* .modal-body img.modal_img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        } */
+    </style>
+    <div class="cover-gallery">
+        <div class="container-lg ">
+            <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
+                @foreach ($foto as $foto)
+                    <div class="col-md-3 row-item ">
+                        <div class="img-item" data-bs-toggle="modal" data-bs-target="#foto{{ $foto->id }}">
+                            <img src="{{ url('Image') . '/' . $foto->image }}" class="gallry-item" alt="Gambar">
+                            <div class="text-gallery-item text-center">
+                                <h5>{{ $foto->judul }}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="foto{{ $foto->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" style="max-width: 800px; width: 100%;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5>{{ $foto->judul }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{{ url('Image') . '/' . $foto->image }}" alt="" class="modal_img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
     @include('app.footer')
 @endsection

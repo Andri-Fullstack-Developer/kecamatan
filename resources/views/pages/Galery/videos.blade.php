@@ -56,7 +56,7 @@
         }
 
         .cover-auto {
-            padding: .2rem 0 0 .2rem;
+            padding: .2rem 0 0 .5rem;
             background: rgb(0, 0, 0);
             border-radius: .2rem
         }
@@ -116,7 +116,7 @@
         {{-- <div class="row"> --}}
         <div class="cover-video">
             <div class="row">
-                <div class="col-md-8 cover-auto">
+                <div class="col-md-7 cover-auto">
                     <video width="738" height="400" class="auto" controls autoplay muted>
                         <source src="{{ asset('videos/video4.mp4') }}" type="video/mp4">
                     </video>
